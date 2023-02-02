@@ -132,11 +132,7 @@ export const ImportPubkey = ({
                     />
                 </Button>
                 </Grid>
-                    <Grid container justifyContent="center">
-                        <Button onClick={()=>setChoose("")} variant="contained" sx={{ mx: 2, mt: 2 }}>
-                            Cancel
-                        </Button>
-                    </Grid>
+
                 </Paper>
                 </Grid></>}
             {choose==="github" && <><Typography  variant="body2" color="primary">
@@ -187,11 +183,7 @@ export const ImportPubkey = ({
                         {publicKeys.length===0 ? `Get public key`:`Try another username`}
                 </Button>
                 </Grid>
-                <Grid container justifyContent="center">
-                <Button onClick={()=>setChoose("")} variant="contained" sx={{ mx: 2, mt: 2 }}>
-                Cancel
-                </Button>
-                </Grid>
+               
                 </Paper>
                 </Grid></>}
             {choose.length===0 && <> <Typography  variant="body2" color="primary">
@@ -226,7 +218,7 @@ export const ImportPubkey = ({
             marginBottom: { xs: 1, sm: 1,md:7, lg: 7 },
           }}
         >
-            <Button variant="outlined" sx={{ mr: 2 }} onClick={() => {setStep(0);setPage(0)}}>
+            <Button variant="outlined" sx={{ mr: 2 }} onClick={() => {if(choose.trim().length!==0){setChoose("");}else{setStep(0);setPage(0)}}}>
             Back
           </Button>
 
