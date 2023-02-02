@@ -7,11 +7,12 @@ import {
   Step,
   StepLabel,
 } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { GenerateOrImport } from './GenerateOrImport';
 import { GeneratePubkey } from './GeneratePubkey';
 import { Success } from './Success';
 import { ImportPubkey } from './ImportPubkey';
+import { Empower } from './Empower';
 import {Key} from './index'
 const steps = ['Get Public Key', 'Add Public Key', 'Empower Human Scan'];
 
@@ -56,11 +57,13 @@ export const AfterConnect = (): React.ReactElement => {
                 </Stepper>
               </Box>
             </Paper>
+
               {page === 0 && <GenerateOrImport setStep={setStep} setPage={setPage} />}
               {page === 1 && <GeneratePubkey setKey={setKey} setStep={setStep} setPage={setPage} />}
               {page === 1.5 && <Success what="generated" keys={key}  setStep={setStep} setPage={setPage} />}
               {page === 2 && <ImportPubkey setKey={setKey} setStep={setStep} setPage={setPage}/>}
               {page === 2.5 && <Success what="imported" keys={key}  setStep={setStep} setPage={setPage} />}
+              {page === 3 && <Empower  />}
           </Box>
         </Grid>
       </Grid>

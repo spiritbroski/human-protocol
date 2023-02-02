@@ -16,6 +16,7 @@ import React, { Dispatch,useState,useEffect } from 'react';
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import KVStore from "@human-protocol/core/abis/KVStore.json";
 import { NFTStorage } from "nft.storage";
+
 const client = new NFTStorage({
     token: process.env.REACT_APP_NFT_STORAGE_API as string,
 });
@@ -83,10 +84,14 @@ saveToNFTStorage(keys.publicKey,setCid,setError);
         ...config,
         onSuccess(data) {
             setSuccess(true);
+            setStep(2);setPage(3);
         },onError(error) {
               setError(error.message)
         },
     })
+    function empowerHuman(){
+        write?.()
+    }
   return (
     <Paper>
         <Snackbar   anchorOrigin={{ vertical:"top", horizontal:"center" }} open={copy} autoHideDuration={3000} onClose={()=>setCopy(false)}>
@@ -121,6 +126,7 @@ saveToNFTStorage(keys.publicKey,setCid,setError);
           </Typography>
           <Grid container>
             <Paper
+                className="pubkey"
               sx={{
                 backgroundColor: '#f6f7fe',
                 width: { lg: 600, xl: 600 },
@@ -136,9 +142,10 @@ saveToNFTStorage(keys.publicKey,setCid,setError);
               <Typography align="justify" variant="body2" color="primary">
                 {keys.publicKey}
               </Typography>
-            </Paper>
+            </Paper
+>
           </Grid>
-            <Button variant="outlined" sx={{ mt: 2 }} onClick={()=> {setCopy(true);navigator.clipboard.writeText(keys.publicKey);}}>
+            <Button size="small" variant="outlined" sx={{ mt: 2 }} onClick={()=> {setCopy(true);navigator.clipboard.writeText(keys.publicKey);}}>
             Copy
           </Button>
         </Grid>
@@ -168,7 +175,7 @@ saveToNFTStorage(keys.publicKey,setCid,setError);
             {what==="generated" && <Button variant="outlined" sx={{ mr: 2 }} onClick={()=>downloadKey(keys.publicKey,keys.privateKey,setError)}>
             Download
           </Button>}
-            <Button disabled={cid.length===0 || !write || isLoading} onClick={() => write?.()} variant="contained">Add to ETH - KV Store</Button>
+            <Button disabled={cid.length===0 || !write || isLoading} onClick={() => empowerHuman()} variant="contained">{cid.length===0 ?`Please wait...`:`Add to ETH - KV Store`}</Button>
         </Grid>
       </Grid>
     </Paper>
