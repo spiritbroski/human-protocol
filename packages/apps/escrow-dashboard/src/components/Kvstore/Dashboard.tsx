@@ -3,65 +3,29 @@ import {
   Paper,
   Typography,
   Box,
-  Stepper,
-  Step,
-  StepLabel,
-} from '@mui/material';
-import React from 'react';
+  Button
+} from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { showIPFS } from "../../services/index";
 
-import { CustomConnectButton } from './CustomConnectButton';
-const steps = ['Get Public Key', 'Add Public Key', 'Empower Human Scan'];
-export const Dashboard = (): React.ReactElement => {
+export const Dashboard = ({ publicKey }: { publicKey: string }): React.ReactElement => {
+  const [pubkey, setPubkey] = useState<string>("");
+  useEffect(() => {
+    showIPFS(publicKey).then(a => setPubkey(a));
+  }, [publicKey]);
   return (
     <Grid container>
-      <Grid
-        item
-        xs={12}
-        sm={6}
-        md={5}
-        container
-        direction="row"
-        justifyContent="flex-start"
-        alignItems="center"
-      >
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={12}
-          container
-          direction="column"
-          justifyContent="flex-start"
-          alignItems="flex-start"
-        >
-            <img width="100" src="/images/key.svg" alt="lbank" />{' '}
-          <div>
-            <Typography variant="h4" color="primary">
-              Empower HUMAN Scan
-            </Typography>
-          </div>
 
-          <div>
-            <Typography variant="h4" color="primary">
-              with ETH KV Store
-            </Typography>
-          </div>
-          <Box sx={{ marginTop: 2 }}>
-            <Typography variant="body2" color="primary">
-              Store your public key in the blockchain, use your public key to encrypt or decrypt data.
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>
       <Grid
         item
         xs={12}
-        sm={6}
-        md={7}
-        container
+        sm={12}
+        md={12}
+
         direction="row"
         justifyContent="center"
       >
+        asd
         <Grid
           item
           xs={12}
@@ -71,63 +35,64 @@ export const Dashboard = (): React.ReactElement => {
           direction="column"
           justifyContent="center"
           alignItems="center"
+
         >
-          <Box>
-            <Paper
-              sx={{
-                padding: { md: 2 },
-                width: { xl: '46em' },
-                marginBottom: 2,
-              }}
-            >
-              {' '}
-              <Box sx={{ width: '100%' }}>
-                <Stepper sx={{ opacity: 0.2 }} activeStep={-1}>
-                  {steps.map((label) => (
-                    <Step key={label}>
-                      <StepLabel>{label}</StepLabel>
-                    </Step>
-                  ))}
-                </Stepper>
-              </Box>
-            </Paper>
+          <Box sx={{ width: { xs: 1, lg: "50%", xl: "40%" } }}>
+
             <Paper>
-              <Grid container direction="column">
+              <Box sx={{ borderBottom: "1px solid #CBCFE6" }}>
+                <Grid container direction="row" justifyContent={"space-between"}
+                      flexDirection={{ xs: "column-reverse", md: "row" }}>
+                  <Grid item><Typography fontWeight={`500`} padding={`10px`}>Stored Public key:</Typography></Grid>
+                  <Grid item><Button sx={{ margin: "10px" }} variant="outlined" size="small">Import New Key</Button>
+                    <Button sx={{ marginRight: "10px" }} variant="contained" size="small">Generate New Key</Button>
+                  </Grid>
+                </Grid>
+              </Box>
+              <Grid container direction="column" sx={{
+                padding: {
+                  xs: "0px 80px 0px 80px",
+                  md: "0px 80px 0px 80px",
+                  lg: "0px 80px 0px 80px",
+                  xl: "0px 80px 0px 80px"
+                }
+              }}>
                 <Grid
                   item
                   container
                   direction="column"
-                  alignItems="center"
-                  sx={{
-                    marginTop: { xs: 1, sm: 1, md: 10, lg: 10 },
 
-                    marginBottom: { lg: 10 },
+                  sx={{
+                    marginBottom: { lg: 10 }
+
+
                   }}
                 >
-                  {' '}
-                  <img width="100" src="/images/wallet.svg" alt="lbank" />{' '}
-                  <Typography
-                    sx={{ marginTop: 3 }}
-                    variant="body2"
-                    color="primary"
-                  >
-                    Connect your wallet to continue
-                  </Typography>
+                  <Box sx={{ width: { xs: 1 } }}>
+                    <Box
+                      className="pubkey"
+                      sx={{
+                        backgroundColor: "#f6f7fe",
+                        height: 200,
+                        marginTop: 2,
+                        overflowY: "scroll",
+                        overflowWrap: "break-word",
+                        padding: 4,
+                        borderRadius: 3
+                      }}
+                    >
+                      <Typography align="justify" variant="body2" color="primary">
+                        {pubkey}
+                      </Typography>
+                    </Box
+                    >
+                  </Box>
+                    <Box sx={{marginTop:2,marginBottom:{xs:2,sm:2,md:2,lg:0}}}>
+    <Button size="small">Copy</Button>
+    <Button size="small">Refresh</Button>
+</Box>
                 </Grid>
-                <Grid
-                  item
-                  container
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="flex-end"
-                  sx={{
-                    marginTop: { xs: 1, sm: 1, md:3,lg: 3 },
 
-                      marginBottom: { xs: 1, sm: 1,md:10, lg: 7 },
-                  }}
-                >
-                  <CustomConnectButton />
-                </Grid>
               </Grid>
             </Paper>
           </Box>

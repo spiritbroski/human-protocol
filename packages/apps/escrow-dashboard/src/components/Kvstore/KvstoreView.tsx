@@ -12,12 +12,12 @@ export const KvstoreView = (): React.ReactElement => {
       functionName: 'get',
       args: [address, "public_key"],
   })
-    console.log(data)
+
   return (
     <>
       {!isConnected && <MainPage />}
     {isConnected && !data && <AfterConnect />}
-    {isConnected && data && <Dashboard />}
+    {isConnected && data  && <Dashboard publicKey={data as string}/>}
     </>
   );
 };

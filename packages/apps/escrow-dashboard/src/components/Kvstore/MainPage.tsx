@@ -101,7 +101,7 @@ export const MainPage = (): React.ReactElement => {
                   sx={{
                     marginTop: { xs: 1, sm: 1, md: 10, lg: 10 },
 
-                    marginBottom: { lg: 10 },
+                    
                   }}
                 >
                   {' '}
@@ -113,20 +113,21 @@ export const MainPage = (): React.ReactElement => {
                   >
                     Connect your wallet to continue
                   </Typography>
+
                 </Grid>
                 <Grid
                   item
                   container
                   direction="row"
                   justifyContent="center"
-                  alignItems="flex-end"
+
                   sx={{
-                    marginTop: { xs: 1, sm: 1, md:3,lg: 3 },
+                    marginTop: { xs: 1, sm: 1,lg: 3 },
 
                       marginBottom: { xs: 1, sm: 1,md:10, lg: 7 },
                   }}
                 >
-                  <CustomConnectButton />
+                    <CustomConnectButton />
                 </Grid>
               </Grid>
             </Paper>
