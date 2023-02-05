@@ -10,16 +10,13 @@ import { saveAs } from "file-saver";
 import JSzip from "jszip";
 import Snackbar from "@mui/material/Snackbar";
 import MuiAlert, { AlertProps } from "@mui/material/Alert";
-
 import { Key } from "./index";
 import React, { Dispatch, useState, useEffect } from "react";
 import { useContractWrite, usePrepareContractWrite } from "wagmi";
 import KVStore from "@human-protocol/core/abis/KVStore.json";
-import { NFTStorage } from "nft.storage";
 
-const client = new NFTStorage({
-  token: process.env.REACT_APP_NFT_STORAGE_API as string
-});
+import {client} from './index'
+
 const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
   props,
   ref

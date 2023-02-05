@@ -115,11 +115,9 @@ export const Decrypt = (): React.ReactElement => {
               }}
                   >
                   a
-              </Box
-                  >
+              </Box>
               <Box sx={{ marginBottom: { xs: 2, sm: 2, md: 2, lg: 0 } }}>
                   <Button size="small">Copy</Button>
-
               </Box>
           </Grid>
 

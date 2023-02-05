@@ -10,10 +10,7 @@ import { showIPFS } from "../../services/index";
 
 
 export const StoredPubkey = ({ publicKey }: { publicKey: string }): React.ReactElement => {
-    const [pubkey, setPubkey] = useState<string>("");
-    useEffect(() => {
-        showIPFS(publicKey).then(a => setPubkey(a));
-        }, [publicKey]);
+
     return (  <Grid
         item
         xs={12}
@@ -70,7 +67,7 @@ export const StoredPubkey = ({ publicKey }: { publicKey: string }): React.ReactE
                             }}
                                 >
                                 <Typography align="justify" variant="body2" color="primary">
-                                    {pubkey}
+                                    {publicKey}
                                 </Typography>
                             </Box
                                 >

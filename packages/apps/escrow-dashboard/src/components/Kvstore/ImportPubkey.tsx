@@ -51,10 +51,7 @@ const handleChange = (ev: ChangeEvent<HTMLInputElement>, setError: Dispatch<stri
   reader.readAsText(ev.target.files![0]);
 };
 
-function isExpired(date: Date) {
-  const now = new Date();
-  return now > date;
-}
+
 
 function pickPublicKey(gpg: string, setKey: Dispatch<Key>, setPage: Dispatch<number>, setStep: Dispatch<number>) {
   setKey({ publicKey: gpg, privateKey: "" });

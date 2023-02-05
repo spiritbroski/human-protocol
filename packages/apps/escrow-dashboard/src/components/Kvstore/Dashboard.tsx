@@ -2,17 +2,21 @@ import {
   Grid,
   Box
 } from "@mui/material";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import ViewTitle from "../ViewTitle";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import {StoredPubkey} from './StoredPubkey'
 import {Decrypt} from './Decrypt'
 import {Encrypt} from './Encrypt'
+import { showIPFS } from "../../services/index";
 export const Dashboard = ({ publicKey }: { publicKey: string }): React.ReactElement => {
 
   const [value, setValue] = React.useState(0);
-
+  const [pubkey, setPubkey] = useState<string>("");
+  useEffect(() => {
+      showIPFS(publicKey).then(a => setPubkey(a));
+      }, [publicKey]);
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
@@ -37,8 +41,8 @@ export const Dashboard = ({ publicKey }: { publicKey: string }): React.ReactElem
             <Tab label="Decrypt" />
           </Tabs>
         </Box>
-          {value===0 && <StoredPubkey publicKey={publicKey}/>}
-          {value===1 && <Encrypt />}
+          {value===0 && <StoredPubkey publicKey={pubkey}/>}
+          {value===1 && <Encrypt publicKey={pubkey} />}
           {value===2 && <Decrypt />}
       </Grid>
     </Grid>
