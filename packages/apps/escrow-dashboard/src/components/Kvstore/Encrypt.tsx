@@ -116,7 +116,7 @@ setSuccess(true)
               {error}
           </Alert>
       </Snackbar>
-    <Box sx={{ width: { xs: 1, lg: "50%", xl: "40%" } }}>
+      <Box sx={{ width: { xs: 1,md: "50%", lg: "50%", xl: "40%" } }}>
 
       <Paper>
         <Box sx={{ borderBottom: "1px solid #CBCFE6" }}>

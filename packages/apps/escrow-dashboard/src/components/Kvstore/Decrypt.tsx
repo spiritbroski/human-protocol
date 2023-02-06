@@ -136,7 +136,7 @@ export const Decrypt = (): React.ReactElement => {
               {error}
           </Alert>
       </Snackbar>
-    <Box sx={{ width: { xs: 1, lg: "50%", xl: "40%" } }}>
+      <Box sx={{ width: { xs: 1,md: "50%", lg: "50%", xl: "40%" } }}>
 
       <Paper>
         <Box sx={{ borderBottom: "1px solid #CBCFE6" }}>
@@ -175,25 +175,25 @@ export const Decrypt = (): React.ReactElement => {
                 disabled={loading}
             />
             <Box>
-                <Button disabled={loading} onClick={getValue} sx={{ my: 1 }} variant="outlined">Get</Button>
+                <Button disabled={loading} onClick={getValue} sx={{ my: 1,mb:!value?5:2 }} variant="outlined">Get</Button>
             </Box>
-              <Box><Typography fontWeight={500}>Value</Typography></Box>
+              {value && <><Box><Typography fontWeight={500}>Value</Typography></Box>
             <Box sx={{ width: { xs: 1 } }}>
               <Box
-                className="pubkey"
-                sx={{
+                  className="pubkey"
+                  sx={{
                   backgroundColor: "#f6f7fe",
-                  maxHeight: 200,
-                  marginTop: 2,
-                  overflowY: "scroll",
-                  overflowWrap: "break-word",
-                  padding: 4,
-                  borderRadius: 3
-                }}
-              >
-                {value}
+                      maxHeight: 200,
+                      marginTop: 2,
+                      overflowY: "scroll",
+                      overflowWrap: "break-word",
+                      padding: 4,
+                      borderRadius: 3
+              }}
+                  >
+                  {value}
               </Box
-              >
+                  >
             </Box>
               <Box  sx={{ marginBottom: { xs: 2, sm: 2, md: 2, lg: 0 } }}>
                   <Button onClick={() => {
@@ -227,9 +227,9 @@ export const Decrypt = (): React.ReactElement => {
                   onChange={(e) => setPassphrase(e.target.value)}
               />
               <Box display={`flex`} width={`100%`} justifyContent={`flex-end`}>
-                  <Button disabled={loading} sx={{my:1}} variant="contained" onClick={decryptValue}>Decrypt</Button>
+                  <Button disabled={loading} sx={{my:1,mb:!decrypted?5:2}} variant="contained" onClick={decryptValue}>Decrypt</Button>
               </Box>
-              <Box><Typography fontWeight={`500`}>Decrypted Value </Typography></Box>
+              {decrypted && <><Box><Typography fontWeight={`500`}>Decrypted Value </Typography></Box>
               <Box
                   className="pubkey"
                   sx={{
@@ -243,13 +243,13 @@ export const Decrypt = (): React.ReactElement => {
               }}
                   >
                   {decrypted}
-              </Box>
+          </Box>
               <Box sx={{ marginBottom: { xs: 2, sm: 2, md: 2, lg: 0 } }}>
-                  <Button onClick={() => {
-                      setCopy(true);
-                      navigator.clipboard.writeText(value);
-                  }} size="small">Copy</Button>
-              </Box>
+              <Button onClick={() => {
+                  setCopy(true);
+                  navigator.clipboard.writeText(value);
+              }} size="small">Copy</Button>
+              </Box></>}</>}
           </Grid>
 
         </Grid>

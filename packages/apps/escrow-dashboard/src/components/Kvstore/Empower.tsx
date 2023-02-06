@@ -6,10 +6,21 @@ import {
   Button
 } from "@mui/material";
 import DoneIcon from '@mui/icons-material/Done';
-import React from "react";
+import React,{Dispatch} from "react";
 
 
-export const Empower = (): React.ReactElement => {
+export const Empower = ({refetch,setPublicKey}:{ refetch: any;
+    setPublicKey: Dispatch<string>;}): React.ReactElement => {
+    async function finish(){
+        try{
+            const {data}=await refetch();
+            setPublicKey(data)
+        }catch(e){
+            if(e instanceof Error){
+
+            }
+        }
+    }
   return (
     <Grid container>
 
@@ -62,7 +73,7 @@ export const Empower = (): React.ReactElement => {
                     Your public key has been stored on the blockchain now, click on continue to encrypt or decrypt
                   </Typography>
                   <Button
-
+                      onClick={finish}
                     variant="contained"
                     sx={{ marginTop: 2 }}
                   >

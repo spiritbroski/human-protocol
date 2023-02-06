@@ -83,16 +83,41 @@ async function getGithubGPGFile(username: string, setError: Dispatch<string>, se
 }
 
 export const ImportPubkey = ({
-                               setStep, setPage, setKey
+    setStep, setPage, setKey,pubkeyExist,refetch,setPublicKey
                              }: {
   setStep: Dispatch<number>;
   setPage: Dispatch<number>;
   setKey: Dispatch<Key>;
+  pubkeyExist:boolean;
+  refetch: any;
+    setPublicKey: Dispatch<string>;
 }) => {
   const [choose, setChoose] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [username, setUsername] = useState<string>("");
   const [publicKeys, setPublicKeys] = useState<Array<{ raw_key: string; key_id: string; name:string}>>([]);
+  async function goBack(){
+      try{
+          if(pubkeyExist){
+              const {data}=await refetch();
+              setPublicKey(data)
+          }else{
+          if (choose.trim().length !== 0) {
+              setChoose("");
+            } else {
+              setStep(0);
+              setPage(0);
+          }
+          }
+      }catch(e){
+          if(e instanceof Error){
+              setError(e.message)
+              
+          }
+      }
+
+
+  }
   return (
     <Paper>
       <Snackbar anchorOrigin={{ vertical: "top", horizontal: "center" }} open={error.length > 0} autoHideDuration={6000}
@@ -242,14 +267,7 @@ export const ImportPubkey = ({
             marginBottom: { xs: 1, sm: 1, md: 7, lg: 7 }
           }}
         >
-          <Button variant="outlined" sx={{ mr: 2 }} onClick={() => {
-            if (choose.trim().length !== 0) {
-              setChoose("");
-            } else {
-              setStep(0);
-              setPage(0);
-            }
-          }}>
+          <Button variant="outlined" sx={{ mr: 2 }} onClick={goBack}>
             Back
           </Button>
 

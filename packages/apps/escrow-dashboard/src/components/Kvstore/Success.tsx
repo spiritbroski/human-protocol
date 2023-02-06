@@ -58,12 +58,13 @@ async function saveToNFTStorage(publicKey: string, setCid: Dispatch<string>, set
 
 const address = process.env.REACT_APP_CONTRACT as string;
 export const Success = ({
-                          setStep, setPage, keys, what
+    setStep, setPage, keys, what
                         }: {
   keys: Key;
   setStep: Dispatch<number>;
   setPage: Dispatch<number>;
   what: string;
+ 
 }) => {
   const [copy, setCopy] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
