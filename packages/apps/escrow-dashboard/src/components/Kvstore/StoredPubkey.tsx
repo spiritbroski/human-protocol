@@ -5,8 +5,8 @@ import {
     Box,
     Button
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { showIPFS } from "../../services/index";
+import React from "react";
+
 
 
 export const StoredPubkey = ({ publicKey }: { publicKey: string }): React.ReactElement => {
@@ -76,6 +76,7 @@ export const StoredPubkey = ({ publicKey }: { publicKey: string }): React.ReactE
                             <Button size="small">Copy</Button>
                             <Button size="small">Refresh</Button>
                         </Box>
+
                     </Grid>
 
                 </Grid>

@@ -10,7 +10,8 @@ import {StoredPubkey} from './StoredPubkey'
 import {Decrypt} from './Decrypt'
 import {Encrypt} from './Encrypt'
 import { showIPFS } from "../../services/index";
-export const Dashboard = ({ publicKey }: { publicKey: string }): React.ReactElement => {
+
+export const Dashboard = ({ publicKey,refetch }: { publicKey: string,refetch:any }): React.ReactElement => {
 
   const [value, setValue] = React.useState(0);
   const [pubkey, setPubkey] = useState<string>("");
