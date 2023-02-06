@@ -6,7 +6,8 @@ import { useAccount, useContractRead } from "wagmi";
 import KVStore from "@human-protocol/core/abis/KVStore.json";
 
 export const KvstoreView = (): React.ReactElement => {
-  const { isConnected, address } = useAccount();
+    
+  const {  isConnected,address } = useAccount();
   const [publicKey, setPublicKey] = useState<string>("");
   const [step, setStep] = useState<number>(0);
   const [page, setPage] = useState<number>(0);
